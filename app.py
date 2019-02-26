@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_mail import Mail
+from flask_mongoengine import MongoEngine
 
 import config
 from views import json_api
@@ -13,6 +14,9 @@ def create_app():
 app = create_app()
 
 mail = Mail(app)
+
+mdb = MongoEngine()
+mdb.init_app(app)
 
 # 本地测试
 @app.after_request

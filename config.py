@@ -17,10 +17,20 @@ FLASK_MAIL_RECEIVER = FLASK_MAIL_RECEIVER           # 邮件接收方
 FLASK_MAIL_SUBJECT = 'WechatBot需要您扫码登录'
 MAIL_CONTENT = ''
 
-# 数据库配置
+
+# 数据库配置 (Mysql / Redis / MongoDB)
 SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 REDIS_URL = REDIS_URL
 SESSION_TYPE = 'redis'
 SQLALCHEMY_RECORD_QUERIES = True
 DATABASE_QUERY_TIMEOUT = 0.5
+MONGODB_HOST = MONGODB_HOST
+MONGODB_PORT = MONGODB_PORT
+MONGODB_DB = 'wxbot'
+
+
+# 微信机器人配置
+AUTO_ACCEPT_VERIFY_TXT = ''                         # 自动接收好友请求时设置验证文本
+NEW_FRIENDS_WELECOME_TXT = ''                       # 添加新的好友时的问候文本
+HELP_TXT = ''                                       # /help 指令的响应文本
