@@ -1,3 +1,30 @@
+.DS_Store
+node_modules/
+npm-debug.log
+.editorconfig
+dist/
+*.map
+migrations
+__pycache__
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Marketplace
+Gist
+ @dongweiming
+ Sign out
+ Unwatch 9
+  Unstar 96
+ Fork 43 dongweiming/weapp-zhihulive
+ Code  Issues 1  Pull requests 0  Projects 0  Wiki  Settings Insights
+Branch: master Find file Copy pathweapp-zhihulive/.gitignore
+7d41a68  on Feb 5
+@dongweiming dongweiming Initial commit
+1 contributor
+RawBlameHistory
+90 lines (71 sloc)  1.02 KB
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -8,7 +35,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-build/
+env/
 develop-eggs/
 dist/
 downloads/
@@ -19,11 +46,9 @@ lib64/
 parts/
 sdist/
 var/
-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-MANIFEST
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -43,9 +68,8 @@ htmlcov/
 .cache
 nosetests.xml
 coverage.xml
-*.cover
+*,cover
 .hypothesis/
-.pytest_cache/
 
 # Translations
 *.mo
@@ -54,7 +78,6 @@ coverage.xml
 # Django stuff:
 *.log
 local_settings.py
-db.sqlite3
 
 # Flask stuff:
 instance/
@@ -69,7 +92,7 @@ docs/_build/
 # PyBuilder
 target/
 
-# Jupyter Notebook
+# IPython Notebook
 .ipynb_checkpoints
 
 # pyenv
@@ -78,27 +101,26 @@ target/
 # celery beat schedule file
 celerybeat-schedule
 
-# SageMath parsed files
-*.sage.py
-
-# Environments
+# dotenv
 .env
-.venv
-env/
+
+# virtualenv
 venv/
 ENV/
-env.bak/
-venv.bak/
 
 # Spyder project settings
 .spyderproject
-.spyproject
 
 # Rope project settings
 .ropeproject
+.*
+*pkl
+static/img/*
+uploads/*
+site
 
-# mkdocs documentation
-/site
+# privacy file
+privacy_config.py
 
-# mypy
-.mypy_cache/
+# qr_code
+qr_code.png
