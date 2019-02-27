@@ -5,8 +5,8 @@ from celery_task.celery import CeleryApp
 from config import *
 from app import app
 from views.api import json_api
-from core.wx import get_bot
 from models.user import User
+from core.wx import get_bot
 
 bot = get_bot()
 
@@ -51,22 +51,6 @@ def update_contact(update=False):
 
 
 
-
-@CeleryApp.task
-def send_scan_qrcode_email(*args, **kwargs):
-    """将登录扫码的二维码图片发送给自己"""
-    # TODO: 增加获取二维码的间隔/添加主动登录入口
-    from app import mail
-    from flask_mail import Message
-    with app.app_context():
-        #app = current_app._get_current_object()
-        msg = Message(
-            subject=FLASK_MAIL_SUBJECT,
-            sender=FLASK_MAIL_SENDER,
-            recipients=[FLASK_MAIL_RECEIVER])
-        with app.open_resource(os.path.join(here, "../QRimage/qr_code.png")) as fp:
-            msg.attach("image.jpg", "image/jpg", fp.read())
-            mail.send(msg)
 
 
 @CeleryApp.task

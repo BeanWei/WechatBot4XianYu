@@ -30,8 +30,11 @@ def error_handler(error):
         code = 500
     return ApiResult({'message': msg}, status=code)
 
+@json_api.route('/', methods=['get'])
+def index():
+    return "Hello WechatBot!"
 
-@json_api.route('/login', methods=['post'])
+@json_api.route('/login', methods=['get'])
 def login():
     user = get_logged_in_user(current_bot)
     from celery_task.tasks import update_contact
@@ -41,6 +44,13 @@ def login():
         'type': 'login',
         'user': user
     }
+
+'''
+@json_api.route('/qrcode', methods=['get'])
+def get_local_qrcode_img():
+    """ 查看本地生成的登陆二维码 """
+    return send_from_directory("/static/img/qr_code.png", 'qr_code.png')
+'''
 
 
 @json_api.route('/logout', methods=['post'])
