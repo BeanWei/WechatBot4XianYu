@@ -5,7 +5,7 @@ from privacy_config import *
 
 
 # 微信扫码登陆的方式
-SEND_MAIL_TIPS_TO_LOGIN = False                     # 默认选择访问URL查看本地生成的二维码
+SEND_MAIL_TIPS_TO_LOGIN = True                     # 默认选择邮件发送本地生成的二维码
 
 # 邮件配置
 MAIL_DEBUG = False                                  # 开启debug的话可以看到响应结果
@@ -19,7 +19,8 @@ MAIL_PASSWORD = MAIL_PASSWORD                       # 填授权码
 FLASK_MAIL_SENDER = FLASK_MAIL_SENDER               # 邮件发送方
 FLASK_MAIL_RECEIVER = FLASK_MAIL_RECEIVER           # 邮件接收方
 FLASK_MAIL_SUBJECT = 'WechatBot需要您扫码登录'
-MAIL_CONTENT = ''
+MAIL_CONTENT = "<img src='{{ img }}'>"
+
 
 
 # 数据库配置 (Mysql / Redis / MongoDB)
