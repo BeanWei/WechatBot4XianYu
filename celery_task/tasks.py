@@ -29,7 +29,7 @@ def _update_contact(bot, update=False):
     if need_add:
         for u in wx_friends:
             if u.puid in need_add:
-                User(id=u.puid, subscriptions=[]).save()
+                User(id=u.puid, care_mobiles=[], care_price=[999999,999999]).save()
 
 
 @CeleryApp.task
@@ -68,5 +68,37 @@ def push_xyproduct_to_wxfriends():
     3. 利用Flask建立的api接口分别推送到对应的好友
     4. 推送完成后更新数据库中的推送状态
     """
+    msg_tmp = "{}\n发布者: {}\n价格: {}\n原始价格: {}\n城市: {}\n评论数: {}\n简述: {}\n商品链接: {}\n"
+    import requests
     from models.xyproduct import XyproductMethod
     no_push_products = XyproductMethod.get_nopush_xyproduct()
+
+    just_care_price_users = User.objects.filter(care_mobiles=[]).all()
+    for npp in no_push_products:
+        msg = msg_tmp.format(
+            npp.title,
+            npp.userNick,
+            npp.price,
+            npp.orgPrice,
+            npp.city,
+            npp.commentCount,
+            npp.description,
+            npp.itemUrl
+        )
+        one_part_users = list()
+        # 先推送只关注价格的订阅者
+        for jcpu in just_care_price_users:
+            if jcpu.care_price[0] <= int(npp.price) and jcpu.care_price[1] >= int(npp.price):
+                one_part_users.append(jcpu)
+
+        requests.get(
+            SERVER_URI+"/sendmsg",
+            params={
+                "target": "["+",".join(one_part_users)+"]",
+                "content": msg
+            })
+
+        #TODO 再推送剩余订阅者
+
+
+

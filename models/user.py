@@ -6,4 +6,6 @@ class User(mdb.Document):
     # Puid 微信用户的ID
     id = mdb.StringField(required=True)
     # 暂时仅支持订阅闲鱼二手手机, 支持同时监控多款型号的手机
-    subscriptions = mdb.ListField(mdb.StringField())
+    care_mobiles = mdb.ListField(mdb.StringField(max_length=120))
+    care_price = mdb.ListField(mdb.IntField(required=True))
+

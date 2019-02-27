@@ -3,6 +3,8 @@ import os
 HERE = os.path.abspath(os.path.dirname(__file__))
 from privacy_config import *
 
+# 服务器
+SERVER_URI = "http://127.0.0.1:8888/"
 
 # 微信扫码登陆的方式
 SEND_MAIL_TIPS_TO_LOGIN = True                     # 默认选择邮件发送本地生成的二维码
