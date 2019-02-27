@@ -1,16 +1,22 @@
-# from datetime import datetime
-# from flask_sqlalchemy import SQLAlchemy, Model
-# from sqlalchemy import Column, DateTime
-#
-#
-# class BaseModel(Model):
-#     create_at = Column(DateTime, default=datetime.utcnow())
-#
-#     def to_dict(self):
-#         columns = self.__table__.columns.keys()
-#         return {key: getattr(self, key) for key in columns}
-#
-#
-# db = SQLAlchemy(model_class=BaseModel)
+# coding:utf-8
 
+# MongoDB
 from app import mdb
+
+
+# SQL
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+from config import *
+SQL_Engine = create_engine(SQLALCHEMY_DATABASE_URI)
+SQLBase = declarative_base()
+
+SessionClass = sessionmaker(bind=SQL_Engine)
+sql_session = SessionClass()
+
+
+
+
+
+

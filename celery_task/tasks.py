@@ -19,8 +19,6 @@ def _get_self(bot):
     return myself
 
 
-
-
 def _update_contact(bot, update=False):
     """ 更新好友 """
     # myself = _get_self(bot)
@@ -69,3 +67,22 @@ def send_scan_qrcode_email(*args, **kwargs):
         with app.open_resource(os.path.join(here, "../QRimage/qr_code.png")) as fp:
             msg.attach("image.jpg", "image/jpg", fp.read())
             mail.send(msg)
+
+
+@CeleryApp.task
+def xyspider():
+    """ 闲鱼爬虫 """
+    from spider.xysj import xy_spider
+    xy_spider(PRODUCT_CATEGORY_ID, SPIDER_PAGES_TOTAL)
+
+
+@CeleryApp.task
+def push_xyproduct_to_wxfriends():
+    """
+    1. 获取MySQL数据库中未推送的商品
+    2. 查询MongoDB中的User需求类别
+    3. 利用Flask建立的api接口分别推送到对应的好友
+    4. 推送完成后更新数据库中的推送状态
+    """
+    from models.xyproduct import XyproductMethod
+    no_push_products = XyproductMethod.get_nopush_xyproduct()

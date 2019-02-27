@@ -34,3 +34,9 @@ MONGODB_DB = 'wxbot'
 AUTO_ACCEPT_VERIFY_TXT = ''                         # 自动接收好友请求时设置验证文本
 NEW_FRIENDS_WELECOME_TXT = ''                       # 添加新的好友时的问候文本
 HELP_TXT = ''                                       # /help 指令的响应文本
+
+
+# 闲鱼商品爬虫配置
+PRODUCT_CATEGORY_ID = '50100398'                    # 闲鱼商品分类ID, 暂只支持爬取手机分类数据
+SPIDER_PAGES_TOTAL = 3  # 可选参数 INT or None   # 爬取多少页，默认为None即持续爬取
+SPIDER_SLEEP_TIME_SEC = 2                           # 爬虫睡眠时间，对闲鱼的接口每爬一页则睡眠一次
