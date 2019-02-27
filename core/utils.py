@@ -25,6 +25,6 @@ def send_scan_qrcode_email():
             subject=FLASK_MAIL_SUBJECT,
             sender=FLASK_MAIL_SENDER,
             recipients=[FLASK_MAIL_RECEIVER])
-        with app.open_resource(os.path.join(here, "../QRimage/qr_code.png")) as fp:
+        with app.open_resource(os.path.join(here, "../static/img/qr_code.png")) as fp:
             msg.attach("image.jpg", "image/jpg", fp.read())
             mail.send(msg)
